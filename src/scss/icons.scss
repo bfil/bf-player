@@ -1,0 +1,221 @@
+/* VARIABLES */
+
+$icon-color: #ccc;
+$icon-color-hover: #5cabb8;
+
+/* MAIN STYLE */
+
+@mixin icon-style {
+	li {
+		@include border-radius(15px);
+		height: 20px;
+		width: 20px;
+		float: left;
+		position: relative;
+		z-index: 1;
+		overflow: hidden;
+		list-style: none;
+		padding: 2px;
+		margin: 0 0 0.25em 0.25em;
+		background: #555;
+		a {
+			height: 20px;
+			&:link, &:visited {
+	  			display: block;
+	  			border: 0;
+	  			padding-left: 28px;
+	  			color: $icon-color;
+			}
+			&:hover, &:focus, &:active {
+	  			color: $icon-color;
+	  			background: transparent;
+			}
+			&:before, &:after {
+	 			margin: -8px 0 0;
+	  			background: $icon-color;
+			}
+			&:hover:before, &:focus:before, &:active:before {
+	  			background: $icon-color-hover;
+			}              
+		}
+		&:before, &:after, a:before, a:after {
+			content: "";
+		    position: absolute;
+		    top: 50%;
+		    left: 0;
+		}
+	}
+}
+
+
+/* ICONS */
+
+@mixin play-icon {
+    a {
+        &:before {
+            left: 7px;
+        	border: 8px solid transparent;
+       		border-width: 7px 11px;
+        	border-left-color: $icon-color;
+        	margin-top: -7px;
+        	background: transparent;
+    	}
+    	&:hover:before, &:focus:before, &:active:before {
+      		border-left-color: $icon-color-hover;
+      		background: transparent;
+    	}
+  	}
+}
+
+@mixin pause-icon {
+  	a {
+    	&:before {
+      	left: 7px;
+      	width: 4px;
+        height: 12px;
+      	border: 3px solid $icon-color;
+      	border-width: 0 3px;
+      	margin-top: -6px;
+      	background: transparent;
+    	}
+    	&:hover:before, &:focus:before, &:active:before {
+      		border-color: $icon-color-hover;
+      		background: transparent;
+    	}
+  	}
+}
+
+@mixin stop-icon {
+  	a:before {
+    	left: 6px;
+    	width: 12px;
+    	height: 12px;
+    	margin-top: -6px;
+  	}
+}
+
+@mixin prev-icon {
+  	a {
+    	&:before {
+      		left: 7px;
+      		width: 2px;
+      		height: 10px;
+      		margin-top: -5px;
+    	}
+    	&:after {
+      		left: 2px;
+      		border: 5px solid transparent;
+      		border-width: 5px 7px;
+      		border-right-color: $icon-color;
+      		margin-top: -5px;
+      		background: transparent;
+   		}
+  		&:hover:after, &:focus:after, &:active:after {
+      		border-right-color: $icon-color-hover;
+    	}
+  	}
+}
+
+@mixin next-icon {
+	a {
+        &:before {
+        	left: 14px;
+        	width: 2px;
+        	height: 10px;
+        	margin-top: -5px;
+      	}
+      	&:after {
+       		left: 7px;
+        	border: 5px solid transparent;
+        	border-width: 5px 7px;
+        	border-left-color: $icon-color;
+        	margin-top: -5px;
+        	background: transparent;
+      	}
+      	&:hover:after, &:focus:after, &:active:after {
+        	border-left-color: $icon-color-hover;
+      	}
+    }
+}
+
+@mixin list-icon {
+	a {
+      	&:before {
+        	left: 8px;
+        	width: 10px;
+        	height: 2px;
+        	border-width: 6px 0;
+        	border-style: double;
+        	border-color: $icon-color;
+        	background: transparent;
+        	margin-top: -7px;
+      	}
+      	&:after {
+	        left: 8px;
+	        width: 10px;
+	        height: 2px;
+	        border-width: 6px 0;
+	        border-style: double;
+	        border-color: $icon-color;
+	        background: transparent;
+	        margin-top: -7px;
+	        left: 4px;
+	        width: 1px;
+      	}
+      	&:hover:before, &:focus:before, &:active:before, &:hover:after, &:focus:after, &:active:after {
+	        border-color: $icon-color-hover;
+	        background: transparent;
+      	}
+    }
+}
+
+@mixin volume-icon {
+	a {
+      	&:before {
+	        left: 1px;
+	        border: 7px solid transparent;
+	        border-right-color: $icon-color;
+	        margin-top: -7px;
+	        background: transparent;
+      	}
+      	&:after {
+	        left: 7px;
+	        width: 4px;
+	        height: 6px;
+	        margin-top: -3px;
+      	}
+        &:hover:before, &:focus:before, &:active:before {
+	        border-right-color: $icon-color-hover;
+	        background: transparent;
+      	}
+      	&:hover:after, &:focus:after, &:active:after {
+        	background: $icon-color-hover;
+      	}
+    }
+}
+
+@mixin mute-icon {
+	@include volume-icon;
+	&:before {
+        @include border-radius(16px);
+        left: 3px;
+        width: 16px;
+        height: 16px;
+        border: 1px solid $icon-color;
+        margin-top: -9px;
+  	}
+  	&:after {
+        left: 3px;
+        width: 18px;
+        border-top: 1px solid $icon-color;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+  	}
+  	&:hover {
+        &:before, &:after {
+          	border-color: $icon-color-hover;
+        }
+  	}
+}
