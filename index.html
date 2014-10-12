@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}BF Player - An HTML5/CSS3 Audio Player</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="css/theme.css" />
+
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<![endif]-->
+
+	<link rel="stylesheet" type="text/css" href="css/bf-player.css" />
+	<script src="js/bf-player.js"></script>
+	<script type="text/javascript">
+
+	require(['jquery'], function($) {
+
+		$(document).ready(function() {
+
+			var player = new Player("player", null, { autoplay: true });
+			
+			var tracks = [
+			{
+				title: "Midnight Mess - A Reason Why (Pre-Mix)",
+				files:
+				[
+				"http://dl.dropbox.com/u/19106268/Music/Midnight%20Mess%20-%20A%20Reason%20Why%20%28Pre-Mix%29.ogg",
+				"http://dl.dropbox.com/u/19106268/Music/Midnight%20Mess%20-%20A%20Reason%20Why%20%28Pre-Mix%29.mp3"
+				]
+			},
+			{
+				title: "Midnight Mess - Ready To Fall (Pre-Mix)",
+				files:
+				[
+				"http://dl.dropbox.com/u/19106268/Music/Midnight%20Mess%20-%20Reay%20To%20Fall%20%28Pre-Mix%29.ogg",
+				"http://dl.dropbox.com/u/19106268/Music/Midnight%20Mess%20-%20Reay%20To%20Fall%20%28Pre-Mix%29.mp3"
+				]
+			},
+			{
+				title: "Midnight Mess - Secrets (Pre-Mix)",
+				files:
+				[
+				"http://dl.dropbox.com/u/19106268/Music/Midnight%20Mess%20-%20Secrets%20%28Pre-Mix%29.ogg",
+				"http://dl.dropbox.com/u/19106268/Music/Midnight%20Mess%20-%20Secrets%20%28Pre-Mix%29.mp3"
+				]
+			},
+			{
+				title: "Hidden Clover - Step Over",
+				files:
+				[
+				"http://dl.dropbox.com/u/19106268/Music/Hidden%20Clover%20-%20Step%20Over.ogg",
+				"http://dl.dropbox.com/u/19106268/Music/Hidden%20Clover%20-%20Step%20Over.mp3"
+				]
+			},
+			{
+				title: "Hidden Clover - Losing Hope",
+				files:
+				[
+				"http://dl.dropbox.com/u/19106268/Music/Hidden%20Clover%20-%20Losing%20Hope.ogg",
+				"http://dl.dropbox.com/u/19106268/Music/Hidden%20Clover%20-%20Losing%20Hope.mp3"
+				]
+			},
+			];
+			
+			player.setTracks(tracks);
+		});
+	});
+
+	</script>
+</head>
+<body>
+
+	<header>
+		<div class="container">
+			<h1>BF Player - HTML5/CSS3 Player</h1>
+		</div>
+	</header>
+
+	<div class="container">
+
+	<article id="content" class="span8">
+		<section>
+
+			<div id="player"></div>
+
+
+			<h3>Features</h3>
+			<div>
+				<p>
+					The player uses the new HTML5 Audio API, and other HTML5 input tags (Range/Progress).
+				</p>
+				<p>
+					The stylesheet uses some cool CSS3 feature
+					(for example, the icons of the controls are pure CSS3 icons, they're not images).
+				</p>
+				<p>
+					The player shows the current track title, time and duration.
+				</p>
+				<p>
+					It has controls to handle playback, seeking, volume/mute, and a playlist toggler.
+				</p>
+				<p>
+					The player tracks can reference multiple files, of different types,
+					and lets the user choose which file type to play, it also checks if the browser supports
+					the media type playback before playing it.
+				</p>
+				<p>
+					The player support some options, such as autoplay or autoadvance.
+				</p>
+				<p>
+					Read the Documentation for more info.
+				</p>
+			</div>
+
+			<h3>Usage</h3>
+			<div>
+				<p>
+					This example creates a Player with 2 Tracks in playlist.<br>
+					To each track can be assigned multiple files, to handle different media types.
+				</p>
+<pre><code>/* HTML */
+&lt;div id="myPlayer"&gt;&lt;/div&gt;
+</code></pre>
+<pre><code>/* Javascript */
+var tracks = new Array();
+tracks[0] = { title: "Song 1", files: [ "song1.ogg", "song1.mp3" ] };
+tracks[1] = { title: "Song 2", files: [ "song2.ogg", "song2.mp3" ] };
+var player = new Player("myPlayer", tracks);
+</code></pre>
+				<p>
+					The tracks can be specified later on.<br>
+					And the player supports some options too, in this example autoplay is enabled.
+				</p>
+<pre><code>var player = new Player("myDivId", null, { autoplay: true });
+player.setTracks(tracks);
+</code></pre>
+			</div>
+
+			<h3>Documentation</h3>
+			<div>
+				<h4>Requirements</h4> 
+				<p>
+					JQuery is required
+				</p>
+				<h4>Player</h4> 
+<pre><code>var player = new Player(id, tracks, options);
+</code></pre>
+				<p>
+					The parameters of the Player constructor are:<br>
+				</p>
+				<ul>
+				<li><strong>id</strong>: The ID of the container Div, where the Player will "appear".</li>
+				<li><strong>tracks</strong>: The Tracks to load in the Player (can be null)</li>
+				<li><strong>options</strong>: The Options/Settings Object (can be null)</li>
+				</ul>
+				<p>
+					You can load new tracks into the player whenever you need, using:
+				</p>
+<pre><code>player.setTracks(tracks);
+</code></pre>
+				<h4>Tracks</h4> 
+<pre><code>var tracks = new Array();
+tracks[0] = { title: "Song 1", files: [ "song1.ogg", "song1.mp3" ] };
+tracks[1] = { title: "Song 2", files: [ "song2.ogg", "song2.mp3" ] };
+</code></pre>
+				<p>
+					The Tracks must be an array of Objects having 2 properties:<br>
+				</p><ul>
+				<li><strong>title</strong>: The Title of the audio track</li>
+				<li><strong>files</strong>: An Array of uris (should be files of different types). The following file types are supported: MP3, OGG or WAV</li>
+				</ul>
+				<p></p>
+				<h4>Options</h4>
+<pre><code>var options = { autoplay: true, autoadvance: true };
+var Player = new Player("myDivId", tracks, options);
+</code></pre>
+				<p>
+					You can specify the following options for the Player:<br>
+				</p>
+				<ul>
+				<li><strong>autoplay</strong> (default: false): specifies wether the playing should start automatically on page load.</li>
+				<li><strong>autoadvance</strong> (default: false): specifies wether the player should automatically advance on the next track when a track ends.</li>
+				<li><strong>repeatAll</strong> (default: false): specifies wether the player should repeat all tracks or stop when the last one ends.</li>
+				<li><strong>volume</strong> (default: 100, min:0, max: 100): the starting volume.</li>
+				</ul>
+			</div>
+
+			<h3>Browser Compatibility</h3>
+			<div>
+				<p>
+					Latest Chrome version supports almost everything the player provides, so you should try it out with it,
+					to see almost every feature in action.
+				</p>
+				<p>
+					The player checks if HTML5 elements are supported by the browser, if not, the elements
+					(such as the progress bar) are hidden if the browser doesn't support them
+					(for example in Firefox 3.6 the progress bar and the volume aren't shown).
+				</p>
+				<p>
+					The player is disabled if the browser doesn't support HTML5 audio (try it in IE8 or previous versions).
+				</p>
+				<p>
+					The player checks if a file type is playable before playing the audio files.
+				</p>
+			</div>
+
+			<h3>License</h3>
+			<div>
+				<p>
+					Copyright (C) 2011 by Bruno Filippone
+					<br><br>
+					Permission is hereby granted, free of charge, to any person obtaining a copy
+					of this software and associated documentation files (the "Software"), to deal
+					in the Software without restriction, including without limitation the rights
+					to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+					copies of the Software, and to permit persons to whom the Software is
+					furnished to do so, subject to the following conditions:
+					<br><br>
+					The above copyright notice and this permission notice shall be included in
+					all copies or substantial portions of the Software.
+					<br><br>
+					THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+					IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+					FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+					AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+					LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+					OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+					THE SOFTWARE.
+				</p>
+			</div>
+
+			<h3>Source Code</h3>
+			<div>
+				<p>
+					The source code is on <a href="http://github.com/bfil/bf-player">GitHub</a>
+				</p>
+			</div>
+		</section>
+	</article>
+</div>
+
+</body>
+</html>
